@@ -26,12 +26,23 @@ class Api::V1::AiController < ApplicationController
 
     response = https.request(request)
     data = JSON.parse(response.read_body)
-    # chat_gpt = data['choices'][0]['message']['content']
+    chat_gpt = data['choices'][0]['message']['content']
+    testcase = chat_gpt.split('Test Case:').last.split("\n\n").first
+    precond = chat_gpt.split("Preconditions:\n").last.split("\n\n").first
+    step = chat_gpt.split("Test Steps:\n").last.split("\n\n").first
+    expectation = chat_gpt.split("Expected Results:\n").last.split("\n\n").first
+    res = {
+      testcase:,
+      precond:,
+      step:,
+      expectation:
+    }
+
     # binding.pry
-    # render json: { data: chat_gpt }, status: 200
-    render json: { data: }, status: 200
-  rescue StandardError
-    render json: { errors: 'Scenario Not Found' }, status: 404
+    render json: { message: "success", data: res}, status: 200
+    # render json: { data: }, status: 200
+  # rescue StandardError
+  #   render json: { errors: 'pleas try again' }, status: 422
   end
 
   private
