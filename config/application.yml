@@ -1,0 +1,7 @@
+url_x : "2954"
+SECRET_KEY : 'randomnumbersandletters'
+REFRESH_TOKEN_KEY : 'randomnumbersandletters'
+MEMBER_KEY : 'fdsakfjdsfkjidf8ds0afdsf903kkfds#df'
+REG_USER : 'fdsakfjdsfkjidf8ds0afdsf903kkfds#df'
+URL_HOST : 'https://logibugv5.fly.dev'
+URL_LOCAL : 'http://localhost:3000'

@@ -1,0 +1,2 @@
+class ApiTesting < ApplicationRecord
+end
