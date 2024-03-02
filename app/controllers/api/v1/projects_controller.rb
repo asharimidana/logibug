@@ -17,9 +17,7 @@ class Api::V1::ProjectsController < ApplicationController
       member_id = find_project[:member_id],
       user_id = @current_user.id
     )
-    if params[:search].present?
-      @projects = @projects.where("name LIKE?", "%#{params[:search]}%")
-    end
+    @projects = @projects.where('name LIKE?', "%#{params[:search]}%") if params[:search].present?
     if @projects.present?
       render json: { message: 'Success', data: @projects.map(&:project_all) }, status: :ok
     else
@@ -29,7 +27,7 @@ class Api::V1::ProjectsController < ApplicationController
 
   # GET /projects/1
   def show
-    render json: {message: 'Success', data: @projects[0].project_att}, status: :ok
+    render json: { message: 'Success', data: @projects[0].project_att }, status: :ok
   end
 
   # project /projects
@@ -45,20 +43,18 @@ class Api::V1::ProjectsController < ApplicationController
 
   # PATCH/PUT /projects/1
   def update
-    begin
-      @projects.update!(project_params)
-        render json: { message: 'Project successfully updated', data: @projects.first.project_att }, status: :ok
-    rescue => exception
-      render json: exception, status: :unprocessable_entity
-    end
+    @projects.update!(project_params)
+    render json: { message: 'Project successfully updated', data: @projects.first.project_att }, status: :ok
+  rescue StandardError => e
+    render json: e, status: :unprocessable_entity
   end
 
   # DELETE /projects/1
   def destroy
     # binding.pry
-    if @projects.first.destroy
-      render json: { message: 'Project successfully deleted', data: @projects.first.project_att }, status: :ok
-    end
+    return unless @projects.first.destroy
+
+    render json: { message: 'Project successfully deleted', data: @projects.first.project_att }, status: :ok
   end
 
   private
