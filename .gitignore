@@ -58,7 +58,7 @@ node_modules/
 /public/packs
 /public/packs-test
 /public/assets
-/config/database.yml
+#/config/database.yml
 /db/schema.rb
 .ignore
 note.md
