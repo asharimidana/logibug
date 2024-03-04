@@ -58,3 +58,5 @@ gem "dockerfile-rails", ">= 1.2", :group => :development
 
 gem "noticed", "~> 1.6"
 
+
+gem "pg", "~> 1.5"
