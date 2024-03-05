@@ -3,7 +3,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.1.2'
 
+# gem 'therubyracer',  platforms: :ruby
 gem 'rails', '~> 7.0.4', '>= 7.0.4.2'
+gem 'rake', "~> 13.0.6"
 
 gem "mysql2", "~> 0.5"
 # gem 'mysql'
